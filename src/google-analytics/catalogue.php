@@ -1,15 +1,14 @@
-<?php include "config.php"; ?>
-
+<?php include 'config.php'; ?>
 <!DOCTYPE html>
-<html lang="en">
-  <?php include "head.php"; ?>
+<html lang='en'>
+  <?php include 'head.php'; ?>
   <body>
-    <script src="./catalogue.js"></script>
-    <?php include "nav.php"; ?>
+    <script src='./catalogue.js'></script>
+    <?php include 'nav.php'; ?>
     <h1>Catalogue</h1>
     <script>
-      const cat = document.createElement('table')
-      cat.innerHTML = `
+      const ctlg = document.createElement('table')
+      ctlg.innerHTML = `
         <thead>
           <tr>
             <th>Name</th>
@@ -30,14 +29,14 @@
                 <td>${item.variant || '-'}</td>
                 <td>${item.price || '-'}</td>
                 <td>
-                  <a href="./product.php?pid=${item.id}">Details</a>
+                  <a href='./product.php?sku=${item.id}'>Details</a>
                 </td>
               </tr>
             `
           }, '')}
         </tbody>
       `
-      document.body.appendChild(cat)
+      document.body.appendChild(ctlg)
     </script>
   </body>
 </html>

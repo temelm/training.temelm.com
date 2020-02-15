@@ -1,0 +1,19 @@
+{
+  "name": "training.temelm.com",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/temelm/training.temelm.com.git"
+  },
+  "author": "Mustafa Temel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/temelm/training.temelm.com/issues"
+  },
+  "homepage": "https://github.com/temelm/training.temelm.com#readme"
+}

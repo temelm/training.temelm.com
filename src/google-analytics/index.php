@@ -1,11 +1,10 @@
-<?php include "config.php"; ?>
-
+<?php include 'config.php'; ?>
 <!DOCTYPE html>
-<html lang="en">
-  <?php include "head.php"; ?>
+<html lang='en'>
+  <?php include 'head.php'; ?>
   <body>
-    <?php include "nav.php"; ?>
+    <?php include 'nav.php'; ?>
     <h1>Home</h1>
-    <a href="./catalogue.php">Browse Catalogue</a>
+    <h2>🤓</h2>
   </body>
 </html>

@@ -1,25 +1,18 @@
 <?php
   $server_script_name = $_SERVER['SCRIPT_NAME'];
-  if (preg_match('/\/index.php/', $server_script_name)) {
-    $current_page = 'Home';
+  if (preg_match('/(\/google-analytics)?\/index.php/', $server_script_name)) {
     $page_title = 'Home';
-  } elseif (preg_match('/\/catalogue.php/', $server_script_name)) {
-    $current_page = 'Catalogue';
+  } elseif (preg_match('/(\/google-analytics)?\/catalogue.php/', $server_script_name)) {
     $page_title = 'Catalogue';
-  } elseif (preg_match('/\/product.php/', $server_script_name)) {
-    $current_page = 'Product';
+  } elseif (preg_match('/(\/google-analytics)?\/product.php/', $server_script_name)) {
     $page_title = 'Product';
-  } elseif (preg_match('/\/basket.php/', $server_script_name)) {
-    $current_page = 'Basket';
+  } elseif (preg_match('/(\/google-analytics)?\/basket.php/', $server_script_name)) {
     $page_title = 'Basket';
-  } elseif (preg_match('/\/checkout.php/', $server_script_name)) {
-    $current_page = 'Checkout';
+  } elseif (preg_match('/(\/google-analytics)?\/checkout.php/', $server_script_name)) {
     $page_title = 'Checkout';
-  } elseif (preg_match('/\/confirmation.php/', $server_script_name)) {
-    $current_page = 'Confirmation';
+  } elseif (preg_match('/(\/google-analytics)?\/confirmation.php/', $server_script_name)) {
     $page_title = 'Confirmation';
   } else {
-    $current_page = '404';
-    $page_title = 'Page Not Found :(';
+    $page_title = '404';
   }
 ?>

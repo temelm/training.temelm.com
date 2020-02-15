@@ -1,8 +1,7 @@
-<?php include "config.php"; ?>
-
+<?php include 'config.php'; ?>
 <!DOCTYPE html>
-<html lang="en">
-  <?php include "head.php"; ?>
+<html lang='en'>
+  <?php include 'head.php'; ?>
   <body>
     <style>
       img {
@@ -12,21 +11,27 @@
         max-width: 80px;
       }
     </style>
-    <script src="./catalogue.js"></script>
-    <?php include "nav.php"; ?>
+    <script src='./catalogue.js'></script>
+    <script src='./basket.js'></script>
+    <?php include 'nav.php'; ?>
     <script>
-      function setTitleAndHeading (productName = 'Product Not Found :(') {
+      function setTitleAndHeading (productName = 'Product Not Found') {
+        document.title = productName
         const h1 = document.createElement('h1')
-        document.title = h1.innerHTML = productName
+        h1.innerHTML = productName
         document.body.appendChild(h1)
+        if (productName === 'Product Not Found') {
+          const h2 = document.createElement('h2')
+          h2.innerHTML = '🤨'
+          document.body.appendChild(h2)
+        }
       }
-
-      const urlParams = new URLSearchParams(window.location.search)
-      const productId = urlParams.get('pid')
+      const params = new URLSearchParams(window.location.search)
+      const productId = params.get('sku')
       let product = window.catalogue.filter(item => item.id === productId)
       if (product && product.length) {
         product = product[0]
-        // Set document.title and display page heading (product name)
+        // Set document.title and display heading (product name)
         setTitleAndHeading(product.name)
         // Display product image
         const image = document.createElement('img')
@@ -40,23 +45,23 @@
           <strong>${product.price}</strong>
         `
         document.body.appendChild(price)
-        // Display quantity field
+        // Display 'Quantity' field
         const quantity = document.createElement('p')
         quantity.innerHTML = `
           Quantity: 
-          <select id="quantity">
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
+          <select id='quantity'>
+            <option value='1' selected>1</option>
+            <option value='2'>2</option>
+            <option value='3'>3</option>
           </select>
         `
         document.body.appendChild(quantity)
-        // Display Add to Basket button
+        // Display 'Add to Basket' button
         const addToBasket = document.createElement('button')
         addToBasket.setAttribute('class', 'button')
         addToBasket.innerHTML = 'Add to Basket'
         document.body.appendChild(addToBasket)
-        // Handle Add to Basket button click
+        // Handle 'Add to Basket' button click
         addToBasket.addEventListener('click', event => {
           event.preventDefault()
           const item = {
@@ -64,26 +69,13 @@
             price: parseFloat(product.price),
             quantity: parseInt(document.querySelector('#quantity').value)
           }
-          // @todo: Add tracking
-          // Handle basket
-          let basket = localStorage.getItem('basket')
-          if (!basket) {
-            localStorage.setItem('basket', JSON.stringify([item]))
-          } else {
-            basket = JSON.parse(basket)
-            const index = basket.findIndex(i => i.id === product.id)
-            if (index === -1) {
-              basket.push(item)
-            } else {
-              basket[index].quantity += item.quantity
-            }
-            localStorage.setItem('basket', JSON.stringify(basket))
-          }
-          // Redirect to Basket 
+          // Add item to basket
+          window.basket.add(item)
+          // Redirect to 'Basket' page
           document.body.style.cursor = 'wait'
           setTimeout(() => {
             window.location.href = './basket.php'
-          }, 1000);
+          }, 400);
         })
       } else {
         setTitleAndHeading()

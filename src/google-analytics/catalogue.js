@@ -14,4 +14,4 @@ window.catalogue = [
     variant: 'Mercury White',
     price: 99.99
   }
-];
+]
