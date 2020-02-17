@@ -24,3 +24,8 @@ window.basket.remove = itemId => {
     localStorage.setItem('basket', JSON.stringify(window.basket.itemList))
   }
 }
+
+window.basket.clear = () => {
+  window.basket.itemList = []
+  localStorage.setItem('basket', JSON.stringify(window.basket.itemList))
+}
