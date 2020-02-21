@@ -49,6 +49,22 @@
           <strong>${product.price}</strong>
         `
         document.body.appendChild(price)
+        // Track product view
+        dataLayer.push({
+          event: 'eec_productView',
+          ecommerce: {
+            detail: {
+              products: [{
+                id: product.id,
+                name: product.name,
+                brand: product.brand,
+                category: product.category,
+                variant: product.variant,
+                price: product.price
+              }]
+            }
+          }
+        })
         // Display 'Quantity' field
         const quantity = document.createElement('p')
         quantity.innerHTML = `

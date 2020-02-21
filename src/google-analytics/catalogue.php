@@ -33,7 +33,7 @@
                 <td>${item.variant || '-'}</td>
                 <td>${item.price || '-'}</td>
                 <td>
-                  <a href='./product.php?sku=${item.id}'>Details</a>
+                  <a href='./product.php?sku=${item.id}' data-sku='${item.id}'>Details</a>
                 </td>
               </tr>
             `
@@ -41,6 +41,37 @@
         </tbody>
       `
       document.body.appendChild(ctlg)
+      const productLinks = [...document.querySelectorAll('a[data-sku]')]
+      productLinks.forEach(link => {
+        link.addEventListener('click', event => {
+          event.preventDefault()
+          const sku = event.target.dataset.sku
+          let product = window.catalogue.filter(item => item.id === sku)[0]
+          let index = window.catalogue.findIndex(item => item.id === sku)
+          dataLayer.push({
+            event: 'eec_productClick',
+            ecommerce: {
+              click: {
+                actionField: {
+                  list: 'Catalogue'
+                },
+                products: [{
+                  id: product.id,
+                  name: product.name,
+                  brand: product.brand,
+                  category: product.category,
+                  variant: product.variant,
+                  price: product.price,
+                  position: index + 1
+                }]
+              }
+            },
+            eventCallback: function () {
+              document.location = `./product.php?sku=${sku}`
+            }
+          });
+        })
+      })
     </script>
   </body>
 </html>
